@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 function App() {
+  useEffect(() => {
+    const params = {
+      loginId: 'test',
+      passWord: 'test'
+    };
+    axios({
+      method: 'post',
+      url: '/commonProject/user/loginAction',
+      data: params
+    }).then(res => {
+      alert(JSON.stringify(res));
+    });
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
