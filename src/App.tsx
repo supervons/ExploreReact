@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import axios from 'axios';
+import service from './utils/service';
 
 function App() {
   useEffect(() => {
@@ -9,9 +9,9 @@ function App() {
       loginId: 'test',
       passWord: 'test'
     };
-    axios({
+    service({
       method: 'post',
-      url: '/commonProject/user/loginAction',
+      url: '/user/loginAction',
       data: params
     }).then(res => {
       alert(JSON.stringify(res));
