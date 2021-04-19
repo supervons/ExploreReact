@@ -9,7 +9,7 @@ const Index: React.FC = () => {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>This is home page!</p>
-        <Link to="/sec">
+        <Link to={`/sec/test`}>
           <p>To second Page</p>
         </Link>
       </header>

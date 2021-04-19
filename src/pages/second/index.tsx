@@ -1,12 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import service from '../../utils/service';
 import './index.css';
 import { Link } from 'react-router-dom';
 
-const Index: React.FC = () => {
+type UserInfo = {
+  id: string;
+  match: {
+    params: {
+      id: '';
+    };
+  };
+};
+
+const Index: React.FC<UserInfo> = ({ match }) => {
+  const [loginId] = useState<string>(match.params.id);
   useEffect(() => {
     const params = {
-      loginId: 'test',
+      loginId: loginId,
       passWord: 'test'
     };
     service({
@@ -20,6 +30,7 @@ const Index: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
+        <p>Params id is {loginId}</p>
         <Link to="/">
           <p>Back home Page</p>
         </Link>

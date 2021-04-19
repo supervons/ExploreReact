@@ -7,7 +7,7 @@ const Router = () => (
   <BrowserRouter>
     <Suspense fallback={<div>加载中，请稍后</div>}>
       <Switch>
-        <Route path={'/sec'} component={Second} />
+        <Route path={'/sec/:id'} component={Second} />
         <Route path={'/'} component={Home} />
       </Switch>
     </Suspense>
