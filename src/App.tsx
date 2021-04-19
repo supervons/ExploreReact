@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import service from './utils/service';
 
-type UserInfo = {
+type WelcomeInfo = {
   title: string;
 };
 
-const App: React.FC<UserInfo> = ({ title }) => {
+const App: React.FC<WelcomeInfo> = ({ title }) => {
+  const [count] = useState<number>(0);
   useEffect(() => {
     const params = {
       loginId: 'test',
@@ -25,15 +26,9 @@ const App: React.FC<UserInfo> = ({ title }) => {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>{title}</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>
+          {title} - {count}
+        </p>
       </header>
     </div>
   );
