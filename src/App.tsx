@@ -3,7 +3,11 @@ import logo from './logo.svg';
 import './App.css';
 import service from './utils/service';
 
-function App() {
+type UserInfo = {
+  title: string;
+};
+
+const App: React.FC<UserInfo> = ({ title }) => {
   useEffect(() => {
     const params = {
       loginId: 'test',
@@ -14,16 +18,14 @@ function App() {
       url: '/user/loginAction',
       data: params
     }).then(res => {
-      alert(JSON.stringify(res));
+      console.log(JSON.stringify(res));
     });
   }, []);
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <p>{title}</p>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -35,6 +37,6 @@ function App() {
       </header>
     </div>
   );
-}
+};
 
 export default App;
