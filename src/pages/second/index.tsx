@@ -34,6 +34,9 @@ const Index: React.FC<UserInfo> = ({ match }) => {
         <Link to="/">
           <p>Back home Page</p>
         </Link>
+        <Link to="/not-found">
+          <p>To Not-Found</p>
+        </Link>
       </header>
     </div>
   );
