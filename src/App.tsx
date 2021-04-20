@@ -2,11 +2,7 @@ import React from 'react';
 import './App.css';
 import Router from './router';
 
-type WelcomeInfo = {
-  title: string;
-};
-
-const App: React.FC<WelcomeInfo> = ({}) => {
+const App: React.FC = () => {
   return (
     <div className="App">
       <Router />

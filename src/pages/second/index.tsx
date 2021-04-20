@@ -26,7 +26,7 @@ const Index: React.FC<UserInfo> = ({ match }) => {
     }).then(res => {
       console.log(JSON.stringify(res));
     });
-  }, []);
+  }, [loginId]);
   return (
     <div className="App">
       <header className="App-header">
