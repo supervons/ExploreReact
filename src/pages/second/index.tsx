@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import service from '../../utils/service';
+import service from 'utils/service';
 import './index.css';
 import { Link } from 'react-router-dom';
 
