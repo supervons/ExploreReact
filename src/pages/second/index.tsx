@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import service from 'utils/service';
 import './index.css';
-import { Route } from 'react-router-dom';
-import { useHistory } from 'react-router';
+import { Route, NavLink } from 'react-router-dom';
 
 import Test from '../business/test';
 
@@ -16,7 +15,6 @@ const Index: React.FC<UserInfo> = () => {
     { name: 'TEST-PAGE', path: '/sec/test-page' },
     { name: 'BACK-HOME', path: '/' }
   ]);
-  const history = useHistory();
   useEffect(() => {
     const params = {
       loginId: 'test',
@@ -39,13 +37,10 @@ const Index: React.FC<UserInfo> = () => {
         <aside className="App-aside">
           {menuList.map(res => {
             return (
-              <p
-                style={{ color: '#fff' }}
-                onClick={() => {
-                  history.push(res.path);
-                }}
-              >
-                {res.name}
+              <p key={res.name}>
+                <NavLink exact to={res.path} activeClassName="active">
+                  {res.name}
+                </NavLink>
               </p>
             );
           })}

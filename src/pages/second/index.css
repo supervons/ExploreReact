@@ -51,6 +51,13 @@
   }
 }
 
+.active{
+  color: #61dafb;
+}
+a{
+  color: #fff
+}
+
 .App-content{
   background-color: #ffffff;
   flex: 1
