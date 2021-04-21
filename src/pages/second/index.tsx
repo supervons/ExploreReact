@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import service from 'utils/service';
 import './index.css';
-import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { useHistory } from 'react-router';
+
+import Test from '../business/test';
 
 type UserInfo = {
   id: string;
-  match: {
-    params: {
-      id: '';
-    };
-  };
 };
 
-const Index: React.FC<UserInfo> = ({ match }) => {
-  const [loginId] = useState<string>(match.params.id);
+const Index: React.FC<UserInfo> = () => {
+  // 定义type-script对象数组
+  const [menuList] = useState<{ name: string; path: string }[]>([
+    { name: 'TEST-PAGE', path: '/sec/test-page' },
+    { name: 'BACK-HOME', path: '/' }
+  ]);
+  const history = useHistory();
   useEffect(() => {
     const params = {
-      loginId: loginId,
+      loginId: 'test',
       passWord: 'test'
     };
     service({
@@ -26,18 +29,31 @@ const Index: React.FC<UserInfo> = ({ match }) => {
     }).then(res => {
       console.log(JSON.stringify(res));
     });
-  }, [loginId]);
+  });
   return (
     <div className="App">
       <header className="App-header">
-        <p>Params id is {loginId}</p>
-        <Link to="/">
-          <p>Back home Page</p>
-        </Link>
-        <Link to="/not-found">
-          <p>To Not-Found</p>
-        </Link>
+        <p>This is header</p>
       </header>
+      <main className="App-main">
+        <aside className="App-aside">
+          {menuList.map(res => {
+            return (
+              <p
+                style={{ color: '#fff' }}
+                onClick={() => {
+                  history.push(res.path);
+                }}
+              >
+                {res.name}
+              </p>
+            );
+          })}
+        </aside>
+        <div className="App-content">
+          <Route path="/sec/test-page" component={Test} />
+        </div>
+      </main>
     </div>
   );
 };

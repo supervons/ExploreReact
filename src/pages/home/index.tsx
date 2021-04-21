@@ -1,17 +1,23 @@
 import React from 'react';
-import './index.css';
+import styles from './index.module.css';
 import logo from '../../images/logo.svg';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Index: React.FC<{}> = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className={styles.App}>
+      <header className={styles.AppHeader}>
+        <img src={logo} className={styles.AppLogo} alt="logo" />
         <p>This is home page!</p>
-        <Link to={`/sec/test`}>
+        <NavLink
+          activeStyle={{
+            fontWeight: 'bold',
+            color: '#ffffff'
+          }}
+          to={`/sec`}
+        >
           <p>To second Page</p>
-        </Link>
+        </NavLink>
       </header>
     </div>
   );
