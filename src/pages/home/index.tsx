@@ -14,7 +14,7 @@ const Index: React.FC<{}> = () => {
             fontWeight: 'bold',
             color: '#ffffff'
           }}
-          to={`/sec`}
+          to={`/sec/test-page`}
         >
           <p>To second Page</p>
         </NavLink>

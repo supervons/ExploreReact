@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import service from 'utils/service';
 import './index.css';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, Switch } from 'react-router-dom';
 
 import Test from '../business/test';
+import NotFound from '../notfound';
 
 type UserInfo = {
   id: string;
@@ -46,7 +47,10 @@ const Index: React.FC<UserInfo> = () => {
           })}
         </aside>
         <div className="App-content">
-          <Route path="/sec/test-page" component={Test} />
+          <Switch>
+            <Route path="/sec/test-page" component={Test} />
+            <Route component={NotFound} />
+          </Switch>
         </div>
       </main>
     </div>
