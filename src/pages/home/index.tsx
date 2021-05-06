@@ -16,7 +16,7 @@ const Index: React.FC<{}> = () => {
           }}
           to={`/sec/test-page`}
         >
-          <p>To second Page</p>
+          <p>To Main Page</p>
         </NavLink>
       </header>
     </div>
