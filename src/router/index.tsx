@@ -10,7 +10,7 @@ const Router = () => (
       <Switch>
         <Route path={'/'} exact component={Home} />
         <Route path={'/sec'} component={Second} />
-        <Route component={NotFound} />
+        <Route path={'/404'} component={NotFound} />
       </Switch>
     </Suspense>
   </BrowserRouter>
