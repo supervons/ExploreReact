@@ -7,14 +7,18 @@ import { Menu } from 'antd';
 
 type UserInfo = {
   id: string;
+  history: {
+    push: (routePath: string) => {};
+  };
 };
 
-const Index: React.FC<UserInfo> = () => {
+const Index: React.FC<UserInfo> = props => {
   // 定义type-script对象数组
   const [menuList] = useState<{ name: string; path: string }[]>([
     { name: 'TEST-PAGE', path: '/sec/test-page' },
     { name: 'BACK-HOME', path: '/' }
   ]);
+
   useEffect(() => {
     const params = {
       loginId: 'test',
@@ -28,6 +32,11 @@ const Index: React.FC<UserInfo> = () => {
       console.log(JSON.stringify(res));
     });
   });
+
+  function navPage(routePath: string) {
+    props.history.push(routePath);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -37,7 +46,11 @@ const Index: React.FC<UserInfo> = () => {
         <aside className="App-aside">
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['TEST-PAGE']}>
             {menuList.map(res => {
-              return <Menu.Item key={res.name}>{res.name}</Menu.Item>;
+              return (
+                <Menu.Item key={res.name} onClick={() => navPage(res.path)}>
+                  {res.name}
+                </Menu.Item>
+              );
             })}
           </Menu>
         </aside>
