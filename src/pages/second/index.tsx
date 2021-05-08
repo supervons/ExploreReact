@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import service from 'utils/service';
 import './index.css';
-import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
-
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Test from '../business/test';
+import { Menu } from 'antd';
 
 type UserInfo = {
   id: string;
@@ -35,15 +35,11 @@ const Index: React.FC<UserInfo> = () => {
       </header>
       <main className="App-main">
         <aside className="App-aside">
-          {menuList.map(res => {
-            return (
-              <p key={res.name}>
-                <NavLink exact to={res.path} activeClassName="active">
-                  {res.name}
-                </NavLink>
-              </p>
-            );
-          })}
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['TEST-PAGE']}>
+            {menuList.map(res => {
+              return <Menu.Item key={res.name}>{res.name}</Menu.Item>;
+            })}
+          </Menu>
         </aside>
         <div className="App-content">
           <Switch>
