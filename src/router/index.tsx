@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from '../pages/home';
-import Second from '../pages/second';
+import Second from '../pages/layout';
 import NotFound from '../pages/notfound';
 
 const Router = () => (

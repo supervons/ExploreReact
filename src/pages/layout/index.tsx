@@ -1,3 +1,8 @@
+/**
+ * @desc App layout page, including menu, title and layout container pages.
+ * @author supervons
+ * @date 2021/05/09
+ */
 import React, { useEffect, useState } from 'react';
 import service from 'utils/service';
 import './index.css';
@@ -33,10 +38,28 @@ const Index: React.FC<UserInfo> = props => {
     }).then(res => {
       console.log(JSON.stringify(res));
     });
+    autoCollapsed();
   });
 
   function navPage(routePath: string) {
     props.history.push(routePath);
+  }
+
+  /**
+   * When the browser width is less than 1080, collapse the menu
+   */
+  function autoCollapsed() {
+    let resizeFlag: any = {};
+    window.onresize = function () {
+      if (resizeFlag !== {}) {
+        clearTimeout(resizeFlag);
+      }
+      resizeFlag = setTimeout(function () {
+        if (document.documentElement.clientWidth < 1080) {
+          setCollapsed(true);
+        }
+      }, 500);
+    };
   }
 
   return (
