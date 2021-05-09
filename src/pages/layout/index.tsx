@@ -9,7 +9,12 @@ import './index.css';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Test from '../business/test';
 import { Menu, Layout } from 'antd';
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  BugOutlined,
+  LogoutOutlined
+} from '@ant-design/icons';
 const { Sider } = Layout;
 type UserInfo = {
   id: string;
@@ -20,9 +25,9 @@ type UserInfo = {
 
 const Index: React.FC<UserInfo> = props => {
   // 定义type-script对象数组
-  const [menuList] = useState<{ name: string; path: string }[]>([
-    { name: 'TEST-PAGE', path: '/sec/test-page' },
-    { name: 'BACK-HOME', path: '/' }
+  const [menuList] = useState<{ name: string; icon: object; path: string }[]>([
+    { name: 'TEST-PAGE', icon: <BugOutlined />, path: '/sec/test-page' },
+    { name: 'BACK-HOME', icon: <LogoutOutlined />, path: '/' }
   ]);
   const [collapsed, setCollapsed] = useState<boolean>(false);
 
@@ -75,7 +80,11 @@ const Index: React.FC<UserInfo> = props => {
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['TEST-PAGE']}>
             {menuList.map(res => {
               return (
-                <Menu.Item key={res.name} onClick={() => navPage(res.path)}>
+                <Menu.Item
+                  key={res.name}
+                  icon={res.icon}
+                  onClick={() => navPage(res.path)}
+                >
                   {res.name}
                 </Menu.Item>
               );
