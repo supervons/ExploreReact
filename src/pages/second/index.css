@@ -17,9 +17,9 @@
   background-color: #282c34;
   height: 5vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   font-size: calc(5px + 2vmin);
   color: white;
 }
@@ -27,7 +27,7 @@
 .App-aside{
   background-color: #282c34;
   width: 10vw;
-  height:95vh;
+  height:100vh;
 }
 
 .App-link {

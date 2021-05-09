@@ -3,8 +3,8 @@ import service from 'utils/service';
 import './index.css';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Test from '../business/test';
-import { Menu } from 'antd';
-
+import { Menu, Layout, Button } from 'antd';
+const { Sider } = Layout;
 type UserInfo = {
   id: string;
   history: {
@@ -18,6 +18,7 @@ const Index: React.FC<UserInfo> = props => {
     { name: 'TEST-PAGE', path: '/sec/test-page' },
     { name: 'BACK-HOME', path: '/' }
   ]);
+  const [collapsed, setCollapsed] = useState<boolean>(false);
 
   useEffect(() => {
     const params = {
@@ -39,11 +40,14 @@ const Index: React.FC<UserInfo> = props => {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <p>This is header</p>
-      </header>
       <main className="App-main">
-        <aside className="App-aside">
+        <Sider
+          className="App-aside"
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+        >
+          <div style={{ height: '5vh' }} />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['TEST-PAGE']}>
             {menuList.map(res => {
               return (
@@ -53,8 +57,13 @@ const Index: React.FC<UserInfo> = props => {
               );
             })}
           </Menu>
-        </aside>
+        </Sider>
         <div className="App-content">
+          <header className="App-header">
+            <Button type="primary" onClick={() => setCollapsed(s => !s)}>
+              切换
+            </Button>
+          </header>
           <Switch>
             <Route path="/sec/test-page" component={Test} />
             <Redirect from="*" to="/404"></Redirect>
