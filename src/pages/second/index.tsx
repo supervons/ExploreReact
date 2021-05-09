@@ -3,7 +3,8 @@ import service from 'utils/service';
 import './index.css';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Test from '../business/test';
-import { Menu, Layout, Button } from 'antd';
+import { Menu, Layout } from 'antd';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 const { Sider } = Layout;
 type UserInfo = {
   id: string;
@@ -47,7 +48,7 @@ const Index: React.FC<UserInfo> = props => {
           collapsible
           collapsed={collapsed}
         >
-          <div style={{ height: '5vh' }} />
+          <div className="App-title">{collapsed ? 'E-R' : 'EXPLORE-REACT'}</div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['TEST-PAGE']}>
             {menuList.map(res => {
               return (
@@ -60,9 +61,15 @@ const Index: React.FC<UserInfo> = props => {
         </Sider>
         <div className="App-content">
           <header className="App-header">
-            <Button type="primary" onClick={() => setCollapsed(s => !s)}>
-              切换
-            </Button>
+            {collapsed ? (
+              <MenuUnfoldOutlined
+                onClick={() => setCollapsed(collapsed => !collapsed)}
+              />
+            ) : (
+              <MenuFoldOutlined
+                onClick={() => setCollapsed(collapsed => !collapsed)}
+              />
+            )}
           </header>
           <Switch>
             <Route path="/sec/test-page" component={Test} />
