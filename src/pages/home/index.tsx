@@ -8,7 +8,7 @@ const Index: React.FC<{}> = () => {
     <div className={styles.App}>
       <header className={styles.AppHeader}>
         <img src={logo} className={styles.AppLogo} alt="logo" />
-        <p>This is home page!</p>
+        <p>This is Explore-React's home page!</p>
         <NavLink
           activeStyle={{
             fontWeight: 'bold',

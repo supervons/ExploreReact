@@ -53,7 +53,7 @@ const Index: React.FC<UserInfo> = props => {
   /**
    * When the browser width is less than 1080, collapse the menu
    */
-  function autoCollapsed() {
+  function autoCollapsed(): void {
     let resizeFlag: any = {};
     window.onresize = function () {
       if (resizeFlag !== {}) {
@@ -67,30 +67,39 @@ const Index: React.FC<UserInfo> = props => {
     };
   }
 
+  /**
+   * Left side bar.
+   * @returns 
+   */
+  function sideBar(): JSX.Element{
+    return (
+      <Sider
+      className="App-aside"
+      trigger={null}
+      collapsible
+      collapsed={collapsed}
+    >
+      <div className="App-title">{collapsed ? 'E-R' : 'EXPLORE-REACT'}</div>
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={['TEST-PAGE']}>
+        {menuList.map(res => {
+          return (
+            <Menu.Item
+              key={res.name}
+              icon={res.icon}
+              onClick={() => navPage(res.path)}
+            >
+              {res.name}
+            </Menu.Item>
+          );
+        })}
+      </Menu>
+    </Sider>)
+  }
+
   return (
     <div className="App">
       <main className="App-main">
-        <Sider
-          className="App-aside"
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-        >
-          <div className="App-title">{collapsed ? 'E-R' : 'EXPLORE-REACT'}</div>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['TEST-PAGE']}>
-            {menuList.map(res => {
-              return (
-                <Menu.Item
-                  key={res.name}
-                  icon={res.icon}
-                  onClick={() => navPage(res.path)}
-                >
-                  {res.name}
-                </Menu.Item>
-              );
-            })}
-          </Menu>
-        </Sider>
+        {sideBar()}
         <div className="App-content">
           <header className="App-header">
             {collapsed ? (
