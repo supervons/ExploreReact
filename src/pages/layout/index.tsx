@@ -33,12 +33,12 @@ const Index: React.FC<UserInfo> = props => {
 
   useEffect(() => {
     const params = {
-      loginId: 'test',
-      passWord: 'test'
+      uId: 'test',
+      password: '098f6bcd4621d373cade4e832627b4f6'
     };
     service({
       method: 'post',
-      url: '/user/loginAction',
+      url: '/v1/token',
       data: params
     }).then(res => {
       console.log(JSON.stringify(res));
@@ -69,31 +69,32 @@ const Index: React.FC<UserInfo> = props => {
 
   /**
    * Left side bar.
-   * @returns 
+   * @returns
    */
-  function sideBar(): JSX.Element{
+  function sideBar(): JSX.Element {
     return (
       <Sider
-      className="App-aside"
-      trigger={null}
-      collapsible
-      collapsed={collapsed}
-    >
-      <div className="App-title">{collapsed ? 'E-R' : 'EXPLORE-REACT'}</div>
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={['TEST-PAGE']}>
-        {menuList.map(res => {
-          return (
-            <Menu.Item
-              key={res.name}
-              icon={res.icon}
-              onClick={() => navPage(res.path)}
-            >
-              {res.name}
-            </Menu.Item>
-          );
-        })}
-      </Menu>
-    </Sider>)
+        className="App-aside"
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+      >
+        <div className="App-title">{collapsed ? 'E-R' : 'EXPLORE-REACT'}</div>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={['TEST-PAGE']}>
+          {menuList.map(res => {
+            return (
+              <Menu.Item
+                key={res.name}
+                icon={res.icon}
+                onClick={() => navPage(res.path)}
+              >
+                {res.name}
+              </Menu.Item>
+            );
+          })}
+        </Menu>
+      </Sider>
+    );
   }
 
   return (
